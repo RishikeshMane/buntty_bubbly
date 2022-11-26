@@ -1,0 +1,554 @@
+#1
+num=int(input("Enter a Number:"))
+if num%2 == 0:
+    print("Number is Even")
+else:
+    print("Number is Odd")
+
+
+
+
+#2
+num=int(input("Enter a Number:"))
+fact=1
+for i in range(1,num+1):
+    fact*=i
+print('Factorial:',fact)
+
+
+
+
+#3
+def fact(num):
+    if num==1:
+        return 1
+    else:
+        return num * fact(num-1)
+n=int(input("Enter a Number:"))
+print('Factorial',fact(n))
+
+
+
+
+#4
+n=int(input("Enter a Number:"))
+temp=n
+rev=0
+while n>0:
+    dig=n%10
+    rev=rev*10+dig
+    n=n//10
+if temp == rev :
+    print("Number is Palindrome")
+else:
+    print("Number is Not Palindrome")
+
+
+
+
+#5
+n=int(input("Enter a Number:"))
+sum=0
+for i in range(1,n+1):
+    sum+=i
+print('Sum=', sum)
+
+
+
+
+#6-using library functions
+a=int(input('Enter Number:'))
+print('Binary:',bin(a))
+print('Octal:',oct(a))
+print('Hexadecimal:',hex(a))
+
+
+
+
+#6-without using library functions
+def convertToBinary(n):
+    bin = 0
+    mul = 1
+    while n != 0:
+        rem = n % 2
+        bin += rem * mul
+        mul *= 10
+        n = n // 2
+    print('Binary:', bin)
+
+def convertToOctal(n):
+    oct=0
+    mul=1
+    while n!=0:
+        rem=n%8
+        oct+=rem*mul
+        mul*=10
+        n=n//8
+    print('Octal:',oct)
+    
+def convertToHex(n):
+    hex=[]
+    mul=1
+    while n!=0:
+        rem=n%16
+        hex.append(rem)
+        mul*=10
+        n=n//16
+    hex.reverse()
+    print('Hexadecimal:',end='')
+    for i in hex:
+        d={10:'A',11:'B',12:'C',13:'D',14:'E',15:'F'}
+        if(i>9):
+            print(d[i], end='')
+        else:
+            print(i,end='')
+
+a=int(input('Enter Number:'))
+convertToBinary(a)
+convertToOctal(a)
+convertToHex(a)
+
+
+
+
+
+#7
+class Account:
+    def __init__(self,owner,balance):
+        self.owner=owner
+        self.balance=balance
+        print('Hello,', self.owner)
+        self.view_balane()
+
+    def view_balane(self):
+        print('Account Balance: ', self.balance)
+
+    def deposit(self,amount):
+        self.balance+=amount
+        print('Deposition Complete')
+        self.view_balane()
+
+    def withdraw(self,amount):
+        if amount>self.balance:
+            print("Insufficient Account Balance")
+        else:
+            self.balance-=amount
+            print('Withdrawal Complete')
+        self.view_balane()
+
+acc=Account('satej',500)
+a=True
+while a:
+    b=int(input("Enter\n1. Deposit\n2. Withdraw\n3. Exit\n>>>"))
+    if b==1:
+        amt=int(input('Enter Amount: '))
+        acc.deposit(amt)
+    elif b==2:
+        amt = int(input('Enter Amount: '))
+        acc.withdraw(amt)
+    else:
+        a=False
+
+
+
+#8
+f=open('data.txt')
+for l in f.readlines():
+    print(l,end='')
+f.close()
+
+
+
+
+#9
+f=open('demo.txt')      
+count=0
+for l in f.readlines():
+       if l.startswith('T') or l.startswith('t'):
+           pass
+       else:
+           count+=1
+print(count)
+
+
+
+
+#10
+f1=open('file1.txt')
+text=f1.read()
+f1.close()
+f2=open('file2.txt','w')
+f2.write(text)
+f2.close()
+
+
+
+
+#11
+def count_words(name):
+    file = open(name,"r")
+    count = 0
+    data = file.read()
+    words = data.split()
+    for word in words:
+        if word =="the" or word =="The":
+            count += 1
+    print(count)
+    file.close()
+count_words("notes.txt")
+
+
+
+
+#12
+import os
+print(os.listdir())
+
+
+#13
+import pandas as pd
+d={1:'a',2:'b',3:'c'}
+s=pd.Series(d)
+
+
+
+
+#14
+import pandas as pd
+df=pd.read_csv("demo.csv")
+s=df[df.columns[0]]
+print(s)
+
+
+
+
+
+
+#15
+import pandas as pd
+d={5:'a',2:'z',3:'c'}
+s=pd.Series(['a','z','c'],[5,2,3])
+sn=s.sort_values()
+print(sn)
+sn=s.sort_index()
+print(sn)
+
+
+
+
+
+
+#16 & 17
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.array([10,20,30,40,50,60])
+y = np.array([15,25,35,45,55,65])
+
+x1 = np.array([10,15,20,25,30,35,40])
+y1 = np.array([4,5,6,8,9,5,1])
+
+plt.plot(x,y,label='x,y')
+plt.plot(x1,y1,label='x1,y1')
+
+plt.title('graph')
+plt.xlabel('x label')
+plt.ylabel('y label')
+plt.legend()
+plt.show()
+
+
+
+
+
+
+
+#18
+import matplotlib.pyplot as plt
+
+data = {'java':22.2,'python':17.6,'php':8.8,'javascript':8,'c#':7.7,'c++':6.7}
+
+languages = list(data.keys())
+popularity = list(data.values())
+
+fig = plt.figure()
+
+plt.bar(languages,popularity)
+plt.xlabel('languages')
+plt.ylabel('popularity')
+plt.title('popularity of languages')
+plt.show()
+
+
+
+
+
+
+#19
+from matplotlib import pyplot as plt
+country = ['india', 'russia', 'japan', 'israel', 'france']
+medal = [23, 17, 35, 29, 12]
+plt.pie(medal, labels=country)
+plt.show()
+
+
+
+
+
+
+
+#20
+df=pd.read_csv("demo.csv")
+print(df)
+
+
+
+
+
+
+#21
+import matplotlib.pyplot as plt
+math_marks = [88,92,80,89,100,80,60,100,80,34]
+science_marks = [35,79,79,48,100,88,32,45,20,30]
+marks_range=[10,20,30,40,50,60,70,80,90,100]
+plt.scatter(marks_range, math_marks, c = 'blue',label='Maths Marks')
+plt.scatter(marks_range, science_marks, c = 'red',label='Science Marks')
+plt.legend()
+plt.show()
+
+
+
+
+
+
+
+
+
+
+#22
+import matplotlib.pyplot as plt
+import numpy as np
+import math
+
+# Get the angles from 0 to 2 pie (360 degree) in narray object
+X = np.arange(0, math.pi * 2, 0.05)
+
+# Using built-in trigonometric function we can directly plot
+# the given cosine wave for the given angles
+Y1 = np.sin(X)
+Y2 = np.cos(X)
+Y3 = np.tan(X)
+Y4 = np.tanh(X)
+
+# Initialise the subplot function using number of rows and columns
+figure, axis = plt.subplots(2, 2)
+
+# For Sine Function
+axis[0, 0].plot(X, Y1)
+axis[0, 0].set_title("Sine Function")
+
+# For Cosine Function
+axis[0, 1].plot(X, Y2)
+axis[0, 1].set_title("Cosine Function")
+
+# For Tangent Function
+axis[1, 0].plot(X, Y3)
+axis[1, 0].set_title("Tangent Function")
+
+# For Tanh Function
+axis[1, 1].plot(X, Y4)
+axis[1, 1].set_title("Tanh Function")
+
+# Combine all the operations and display
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+#23
+from nltk.stem import PorterStemmer
+ps = PorterStemmer()
+words = ["program", "programs", "programmer", "programming", "programmers"]
+for w in words:
+    print(w, " : ", ps.stem(w))
+
+
+
+
+
+
+
+#24
+#Import the required libraries
+from tkinter import *
+from tkinter import ttk
+
+#Create an instance of Tkinter Frame
+win = Tk()
+
+#Set the geometry
+win.geometry("700x250")
+
+# Define a function to return the Input data
+def get_data():
+   label.config(text= entry.get())
+
+#Create an Entry Widget
+entry = Entry(win, width= 42)
+entry.place(relx= .5, rely= .5, anchor= CENTER)
+
+#Inititalize a Label widget
+label= Label(win, text="")
+label.pack()
+
+#Create a Button to get the input data
+ttk.Button(win, text= "Click to Show", command= get_data).place(relx= .7, rely= .5, anchor= CENTER)
+
+win.mainloop()
+
+
+
+
+
+
+#25
+package
+
+
+
+
+
+
+
+
+
+#26-using default argument values
+def area(a,b=None):
+    if(b==None):
+        print('Area of Square:',a*a)
+    else:
+        print('Area of Rectangle:',a*b)
+area(5)
+area(7,8)
+
+
+
+
+#26-Using *args
+def addition(*a):
+    sum=0
+    for i in range(len(a)):
+        sum+=a[i]
+    print(sum)
+addition(5)
+addition(4,7)
+addition(2,6,9)
+addition(5,2,7,9)
+
+
+
+
+
+#27
+class Parent:
+    def printClassName(self):
+        print('Parent Class')
+
+class Child(Parent):
+    def printClassName(self):
+        print('Child Class')
+        
+a=Child()
+a.printClassName()
+
+
+
+
+
+
+#28
+from array import *
+a=array('i',[1,2,3,4])
+print(a)
+a.append(5)
+print(a)
+a.pop()
+print(a)
+a.pop(0)
+print(a)
+a.insert(2,6)
+print(a)
+a.index(4)
+print(a)
+a.count(2)
+a.remove(2)
+a.reverse()
+a.clear()
+
+
+
+
+#29
+a=[1,2,3,'hello',4,True]
+a.append(5)
+a.clear()
+a.count(3)
+a.index('hello')
+a.insert(2,6)
+a.pop()
+a.pop(1)
+a.sort()
+a.remove(3)
+
+
+
+#30
+d={1:'a',2:'b',3:'c',4:'d'}
+d.pop(3)
+d.popitem()#removes last inserted key-value pair
+print(d.values())
+print(d.keys())
+d.update(5:'e')
+print(d.get(4))
+print(d.items())
+a=d.copy()
+d.clear()
+
+
+
+#31
+a='dypcet'
+b=a.capitalize()
+b=a.center(20)
+print(a.count('dyp'))
+print(a.endswith('et'))
+print(a.find('yp'))
+print(a.isalpha())
+print(a.isalnum())
+print(a.isnumeric())
+print(a.isdigit())
+print(a.islower())
+b=a.lower()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
